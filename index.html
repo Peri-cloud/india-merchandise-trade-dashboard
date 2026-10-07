@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>India Merchandise Trade — Analysis &amp; Prediction</title>
+<meta name="description" content="FDSA project dashboard: analysis and prediction of India's merchandise trade using official TradeStat EIDB data (FY2018-19 to FY2025-26, Rs Crore).">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230A1628'/><path d='M6 22 L12 14 L18 18 L26 8' stroke='%232DD4BF' stroke-width='2.5' fill='none'/></svg>">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="30" height="30"><path d="M5 23 L12 14 L18 18 L27 7" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="27" cy="7" r="2.4" fill="currentColor"/></svg>
+      </div>
+      <div class="brand-text">
+        <span class="brand-title">India Trade Analytics</span>
+        <span class="brand-sub">FDSA · TradeStat EIDB</span>
+      </div>
+    </div>
+    <nav class="nav" id="nav">
+      <div class="nav-indicator" id="navIndicator" aria-hidden="true"></div>
+      <a href="#/overview" class="nav-item" data-page="overview"><span class="nav-ico">◈</span>Overview</a>
+      <a href="#/trends" class="nav-item" data-page="trends"><span class="nav-ico">◭</span>Trade Trends</a>
+      <a href="#/commodities" class="nav-item" data-page="commodities"><span class="nav-ico">▤</span>Commodity Analysis</a>
+      <a href="#/countries" class="nav-item" data-page="countries"><span class="nav-ico">◍</span>Country &amp; Region</a>
+      <a href="#/statistics" class="nav-item" data-page="statistics"><span class="nav-ico">∑</span>Statistics</a>
+      <a href="#/forecast" class="nav-item" data-page="forecast"><span class="nav-ico">↗</span>Forecast</a>
+      <a href="#/models" class="nav-item" data-page="models"><span class="nav-ico">⚖</span>Model Performance</a>
+      <a href="#/explorer" class="nav-item" data-page="explorer"><span class="nav-ico">▦</span>Data Explorer</a>
+      <a href="#/methodology" class="nav-item" data-page="methodology"><span class="nav-ico">⌘</span>Methodology</a>
+      <a href="#/source" class="nav-item" data-page="source"><span class="nav-ico">❋</span>Data Source</a>
+    </nav>
+    <div class="sidebar-foot">
+      <span class="dot"></span>
+      <span>Offline dataset · ₹ Crore</span>
+    </div>
+  </aside>
+
+  <main class="main" id="main" tabindex="-1">
+
+    <!-- ======================= OVERVIEW ======================= -->
+    <section class="page" id="page-overview" hidden>
+      <header class="page-head">
+        <div>
+          <h1>Overview</h1>
+          <p class="page-sub">India's merchandise trade, FY2018-19 → FY2025-26 · Source: TradeStat EIDB, Department of Commerce</p>
+        </div>
+        <div class="head-chip" id="ovFyChip"></div>
+      </header>
+      <div class="notice" id="ovNotice"></div>
+      <div class="kpi-grid" id="ovKpis"></div>
+      <div class="grid-2-1">
+        <div class="panel reveal">
+          <div class="panel-head">
+            <h2>Exports &amp; imports, fiscal years</h2>
+            <span class="hint">₹ Crore · L = Lakh (10⁵)</span>
+          </div>
+          <div class="chart" id="ovTrend"></div>
+        </div>
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Trade balance</h2></div>
+          <div class="chart" id="ovBalance"></div>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Top 5 export chapters</h2><span class="hint" id="ovChFy"></span></div>
+          <div class="chart" id="ovChapters"></div>
+        </div>
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Top 5 export partners</h2><span class="hint" id="ovPnFy"></span></div>
+          <div class="chart" id="ovPartners"></div>
+        </div>
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Concentration (HHI)</h2><span class="hint">chapters · higher = more concentrated</span></div>
+          <div class="chart" id="ovHhi"></div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="panel reveal">
+          <div class="panel-head"><h2>What this dashboard shows</h2></div>
+          <div class="stat-list">
+            <div class="stat-row"><span class="stat-k">Descriptive</span><span class="stat-v">Trends, shares, concentration and rankings computed directly from the retrieved TradeStat tables.</span></div>
+            <div class="stat-row"><span class="stat-k">Inferential</span><span class="stat-v">Four statistical tests — Pearson/Spearman correlation, one-way ANOVA, chi-square independence, Kruskal-Wallis — each reported with test statistic and p-value.</span></div>
+            <div class="stat-row"><span class="stat-k">Predictive</span><span class="stat-v">Three time-aware models (Persistence, Linear Regression, Random Forest) validated out-of-sample against the published FY2025-26 actuals.</span></div>
+          </div>
+        </div>
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Reading notes</h2></div>
+          <ul class="notes">
+            <li>All values are in <strong>₹ Crore</strong> as published by TradeStat; Indian digit grouping (₹1,25,000 Cr).</li>
+            <li>FY2025-26 is the latest complete fiscal year (ended 31 March 2026) and remains subject to official revision.</li>
+            <li>FY2023-24 <em>export</em> item values carry a source-side defect (items sum to 2.0× the official total); see the on-page warning and Data Source page.</li>
+            <li>Charts on this site are descriptive only; nothing here implies causation.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= TRADE TRENDS ======================= -->
+    <section class="page" id="page-trends" hidden>
+      <header class="page-head">
+        <div><h1>Trade Trends</h1>
+        <p class="page-sub">Annual totals in ₹ Crore, with growth and composition · official total rows from TradeStat</p></div>
+      </header>
+      <div class="kpi-grid kpi-3" id="trKpis"></div>
+      <div class="panel reveal">
+        <div class="panel-head">
+          <h2>Export, import and balance</h2>
+          <div class="seg" id="trSeriesSeg" role="group" aria-label="Series">
+            <button class="seg-btn active" data-v="both">Both</button>
+            <button class="seg-btn" data-v="exp">Exports</button>
+            <button class="seg-btn" data-v="imp">Imports</button>
+            <button class="seg-btn" data-v="bal">Balance</button>
+          </div>
+        </div>
+        <div class="chart tall" id="trMain"></div>
+      </div>
+      <div class="grid-2">
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Year-over-year growth</h2><span class="hint">%</span></div>
+          <div class="chart" id="trGrowth"></div>
+        </div>
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Export share of total trade</h2><span class="hint">%</span></div>
+          <div class="chart" id="trShare"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= COMMODITY ANALYSIS ======================= -->
+    <section class="page" id="page-commodities" hidden>
+      <header class="page-head">
+        <div><h1>Commodity Analysis</h1>
+        <p class="page-sub">HS 2-digit chapters · values in ₹ Crore · click a bar for the chapter drill-down</p></div>
+        <div class="head-controls">
+          <div class="seg" id="cmDir" role="group" aria-label="Direction">
+            <button class="seg-btn active" data-v="export">Exports</button>
+            <button class="seg-btn" data-v="import">Imports</button>
+          </div>
+          <select id="cmFy" class="select" aria-label="Fiscal year"></select>
+        </div>
+      </header>
+      <div class="notice warn" id="cmFlag" hidden></div>
+      <div class="grid-main-side">
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Top 10 chapters — <span id="cmTopTitle">exports</span></h2><span class="hint" id="cmTopHint"></span></div>
+          <div class="chart tall" id="cmTop"></div>
+        </div>
+        <div class="panel reveal side">
+          <div class="panel-head"><h2>Chapter detail</h2><span class="hint" id="cmDetailName"></span></div>
+          <div class="detail-kpis" id="cmDetailKpis"></div>
+          <div class="chart" id="cmTrend"></div>
+          <div class="panel-head sub"><h3>Top 4-digit lines within chapter (FY2024-25)</h3></div>
+          <div class="chart small" id="cmHs4"></div>
+          <p class="hint pad" id="cmHs4Hint"></p>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Concentration — HHI by year</h2><span class="hint">top direction: <span id="cmHhiDir">export</span></span></div>
+          <div class="chart" id="cmHhi"></div>
+        </div>
+        <div class="panel reveal">
+          <div class="panel-head"><h2>All chapters — <span id="cmTblTitle">export</span></h2>
+            <input type="search" id="cmSearch" class="input" placeholder="Search chapter…" aria-label="Search chapter">
+          </div>
+          <div class="table-wrap" id="cmTable"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= COUNTRY & REGION ======================= -->
+    <section class="page" id="page-countries" hidden>
+      <header class="page-head">
+        <div><h1>Country &amp; Region</h1>
+        <p class="page-sub">Partner countries and analyst-mapped regions · values in ₹ Crore</p></div>
+        <div class="head-controls">
+          <div class="seg" id="cnDir" role="group" aria-label="Direction">
+            <button class="seg-btn active" data-v="export">Exports</button>
+            <button class="seg-btn" data-v="import">Imports</button>
+          </div>
+          <select id="cnFy" class="select" aria-label="Fiscal year"></select>
+        </div>
+      </header>
+      <div class="notice warn" id="cnFlag" hidden></div>
+      <div class="grid-2">
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Top 10 partners — <span id="cnTopTitle">exports</span></h2><span class="hint">click to trace trend</span></div>
+          <div class="chart tall" id="cnTop"></div>
+        </div>
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Regional composition</h2><span class="hint" id="cnRegionHint"></span></div>
+          <div class="chart tall" id="cnRegion"></div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Region share evolution — <span id="cnEvoDir">exports</span></h2><span class="hint">% of total</span></div>
+          <div class="chart" id="cnEvolution"></div>
+        </div>
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Trade balance profile by partner (FY2024-25)</h2><span class="hint">exports vs imports with the partner</span></div>
+          <div class="chart" id="cnProfile"></div>
+        </div>
+      </div>
+      <div class="panel reveal">
+        <div class="panel-head"><h2>All partners — <span id="cnTblTitle">export</span></h2>
+          <input type="search" id="cnSearch" class="input" placeholder="Search country…" aria-label="Search country">
+        </div>
+        <div class="table-wrap" id="cnTable"></div>
+      </div>
+    </section>
+
+    <!-- ======================= STATISTICS ======================= -->
+    <section class="page" id="page-statistics" hidden>
+      <header class="page-head">
+        <div><h1>Statistics</h1>
+        <p class="page-sub">Inferential tests on the retrieved data · reference year FY2024-25 for cross-sections</p></div>
+      </header>
+      <div class="tabs" id="stTabs" role="tablist">
+        <button class="tab active" data-t="corr" role="tab">Correlation</button>
+        <button class="tab" data-t="anova" role="tab">ANOVA</button>
+        <button class="tab" data-t="chi" role="tab">Chi-Square</button>
+        <button class="tab" data-t="kw" role="tab">Kruskal-Wallis</button>
+      </div>
+      <div class="notice" id="stNotice"></div>
+
+      <div class="tabpane" id="stp-corr">
+        <div class="grid-2-1">
+          <div class="panel reveal">
+            <div class="panel-head"><h2>Chapter exports vs imports (FY2024-25)</h2><span class="hint">log-log · n=98 chapters</span></div>
+            <div class="chart tall" id="stScatter"></div>
+          </div>
+          <div class="stack" id="stCorrCards"></div>
+        </div>
+        <div class="panel reveal">
+          <div class="panel-head"><h2>National exports vs imports (n=8 fiscal years)</h2></div>
+          <div class="chart" id="stNatScatter"></div>
+        </div>
+      </div>
+
+      <div class="tabpane" id="stp-anova" hidden>
+        <div class="grid-2-1">
+          <div class="panel reveal">
+            <div class="panel-head"><h2>ln(total trade) by region — boxplots (FY2024-25)</h2><span class="hint">median, IQR, range in ₹ Cr after back-transform</span></div>
+            <div class="chart tall" id="stBox"></div>
+          </div>
+          <div class="stack" id="stAnovaCards"></div>
+        </div>
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Group medians &amp; sizes</h2></div>
+          <div class="table-wrap" id="stAnovaTable"></div>
+        </div>
+      </div>
+
+      <div class="tabpane" id="stp-chi" hidden>
+        <div class="grid-2-1">
+          <div class="panel reveal">
+            <div class="panel-head"><h2>Region × trade profile — observed counts (FY2024-25)</h2><span class="hint">profile: export-surplus vs import-surplus partner</span></div>
+            <div class="chart tall" id="stChiHeat"></div>
+          </div>
+          <div class="stack" id="stChiCards"></div>
+        </div>
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Expected counts under independence</h2></div>
+          <div class="table-wrap" id="stChiTable"></div>
+        </div>
+      </div>
+
+      <div class="tabpane" id="stp-kw" hidden>
+        <div class="grid-2-1">
+          <div class="panel reveal">
+            <div class="panel-head"><h2>Group medians with H statistic</h2><span class="hint">same groups as ANOVA — non-parametric check</span></div>
+            <div class="chart tall" id="stKwBar"></div>
+          </div>
+          <div class="stack" id="stKwCards"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= FORECAST ======================= -->
+    <section class="page" id="page-forecast" hidden>
+      <header class="page-head">
+        <div><h1>Forecast</h1>
+        <p class="page-sub">One-year-ahead predictions from lag-1 features · validated against the published FY2025-26 actuals</p></div>
+        <div class="head-controls">
+          <div class="seg" id="fcDir" role="group" aria-label="Target">
+            <button class="seg-btn active" data-v="export">Exports</button>
+            <button class="seg-btn" data-v="import">Imports</button>
+          </div>
+        </div>
+      </header>
+      <div class="notice" id="fcNotice"></div>
+      <div class="panel reveal">
+        <div class="panel-head">
+          <h2 id="fcMainTitle">Exports — history, FY2025-26 predictions, FY2026-27 projection</h2>
+          <div class="legend-chips" id="fcLegend"></div>
+        </div>
+        <div class="chart xtall" id="fcMain"></div>
+      </div>
+      <div class="grid-3" id="fcCards"></div>
+      <div class="panel reveal">
+        <div class="panel-head"><h2>Top chapters — FY2025-26 predicted vs actual (₹ Cr)</h2><span class="hint">Random Forest model · chapters never seen by any fit</span></div>
+        <div class="table-wrap" id="fcChTable"></div>
+      </div>
+    </section>
+
+    <!-- ======================= MODEL PERFORMANCE ======================= -->
+    <section class="page" id="page-models" hidden>
+      <header class="page-head">
+        <div><h1>Model Performance</h1>
+        <p class="page-sub">Time-aware evaluation · expanding-window one-step-ahead backtest FY2021-22 → FY2024-25</p></div>
+        <div class="head-controls">
+          <div class="seg" id="moTarget" role="group" aria-label="Target">
+            <button class="seg-btn active" data-v="export">National exports</button>
+            <button class="seg-btn" data-v="import">National imports</button>
+            <button class="seg-btn" data-v="chapter">Top-12 chapters</button>
+          </div>
+        </div>
+      </header>
+      <div class="kpi-grid kpi-4" id="moKpis"></div>
+      <div class="grid-2">
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Predicted vs actual — backtest points</h2><span class="hint" id="moScatterHint"></span></div>
+          <div class="chart tall" id="moScatter"></div>
+        </div>
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Backtest points by year</h2><span class="hint">₹ Cr</span></div>
+          <div class="chart tall" id="moBack"></div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Feature importance — Random Forest</h2><span class="hint" id="moImpHint"></span></div>
+          <div class="chart" id="moImp"></div>
+        </div>
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Honest findings</h2></div>
+          <ul class="notes" id="moFindings"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= DATA EXPLORER ======================= -->
+    <section class="page" id="page-explorer" hidden>
+      <header class="page-head">
+        <div><h1>Data Explorer</h1>
+        <p class="page-sub">Browse the exact retrieved values · ₹ Crore · Indian grouping</p></div>
+        <div class="head-controls">
+          <div class="seg" id="exDs" role="group" aria-label="Dataset">
+            <button class="seg-btn active" data-v="chapters">HS chapters</button>
+            <button class="seg-btn" data-v="countries">Countries</button>
+            <button class="seg-btn" data-v="hs4">HS 4-digit (FY2024-25)</button>
+          </div>
+          <select id="exFy" class="select" aria-label="Fiscal year"></select>
+          <input type="search" id="exSearch" class="input" placeholder="Filter…" aria-label="Filter rows">
+        </div>
+      </header>
+      <div class="notice" id="exMeta"></div>
+      <div class="panel reveal">
+        <div class="panel-head">
+          <h2 id="exTitle">Chapters</h2>
+          <div class="head-controls">
+            <span class="hint" id="exCount"></span>
+            <button class="btn" id="exDownload">Download CSV</button>
+          </div>
+        </div>
+        <div class="table-wrap max" id="exTable"></div>
+      </div>
+    </section>
+
+    <!-- ======================= METHODOLOGY ======================= -->
+    <section class="page" id="page-methodology" hidden>
+      <header class="page-head">
+        <div><h1>Methodology</h1>
+        <p class="page-sub">Pipeline, statistical protocol and modelling choices</p></div>
+      </header>
+      <div class="panel reveal">
+        <div class="panel-head"><h2>Data pipeline</h2><span class="hint">everything below ran locally, in order</span></div>
+        <ol class="pipeline" id="pipe"></ol>
+      </div>
+      <div class="grid-2">
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Statistical protocol</h2></div>
+          <ul class="notes">
+            <li><strong>Pearson / Spearman</strong> — linear and rank correlation between export and import values; national series (n=8) and HS-chapter cross-section (n=98, FY2024-25). p-values reported; with n=8 the national test is indicative only.</li>
+            <li><strong>One-way ANOVA</strong> — response: ln(total bilateral trade ₹ Cr) of each partner country; factor: region (FY2024-25). F statistic, df, p-value and effect size η². Log transform pre-registered to reduce heavy right skew.</li>
+            <li><strong>Chi-square</strong> — contingency: region × trade profile (export-surplus vs import-surplus partner), regions with ≥15 partners retained. χ², df, p, Cramér's V; expected counts verified ≥5.</li>
+            <li><strong>Kruskal-Wallis</strong> — non-parametric robustness check of the ANOVA on the same groups; H statistic, p-value, ε² = H/(n−1).</li>
+          </ul>
+        </div>
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Modelling protocol</h2></div>
+          <ul class="notes">
+            <li><strong>Features (all lag-1, known at forecast time):</strong> export_lag1, import_lag1, balance_lag1, export_share_lag1. No same-year information ever enters a prediction.</li>
+            <li><strong>Models:</strong> Persistence (ŷₜ = yₜ₋₁), Linear Regression (OLS), Random Forest (500 trees, depth 3, seed 42).</li>
+            <li><strong>Time-aware evaluation:</strong> expanding-window one-step-ahead backtest for FY2021-22…FY2024-25 — each target year predicted by models trained strictly on earlier years. Time series are never shuffled or split randomly.</li>
+            <li><strong>Out-of-sample validation:</strong> models refit on FY2018-19…FY2024-25 predict FY2025-26; the published FY2025-26 actuals (year now complete) serve as the hold-out check. FY2026-27 values on the Forecast page are projections with no published actual — clearly labelled.</li>
+            <li><strong>Metrics:</strong> MAE and RMSE in ₹ Cr; R² is unit-free. Pooled over backtest points; every model is compared against the Persistence baseline.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Animation philosophy</h2></div>
+          <ul class="notes">
+            <li>Every animation encodes information: rank changes in the Top-10 bars show re-ordering directly; the forecast line changes from solid to dashed exactly where history ends; KPI numbers count up to signal scale; the sidebar indicator slides to show position in the site.</li>
+            <li>Loading sequence completes in under 1.5 s; reveals are scroll-triggered once; all motion respects <code>prefers-reduced-motion</code>.</li>
+          </ul>
+        </div>
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Limitations</h2></div>
+          <ul class="notes" id="methLimitations"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= DATA SOURCE ======================= -->
+    <section class="page" id="page-source" hidden>
+      <header class="page-head">
+        <div><h1>Data Source</h1>
+        <p class="page-sub">Provenance, retrieval log and data-quality audit</p></div>
+      </header>
+      <div class="panel reveal">
+        <div class="panel-head"><h2>Source</h2></div>
+        <div class="table-wrap" id="srcTable"></div>
+      </div>
+      <div class="grid-2">
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Retrieval log</h2><span class="hint" id="srcLogHint"></span></div>
+          <div class="table-wrap" id="srcLog"></div>
+        </div>
+        <div class="panel reveal">
+          <div class="panel-head"><h2>Quality audit summary</h2></div>
+          <div class="table-wrap" id="srcQuality"></div>
+        </div>
+      </div>
+      <div class="notice warn" id="srcFlag"></div>
+      <div class="panel reveal">
+        <div class="panel-head"><h2>Disclaimers</h2></div>
+        <ul class="notes">
+          <li>All figures are reproduced exactly as published by TradeStat EIDB on the retrieval date; nothing is imputed, scaled or synthesised.</li>
+          <li>Predictions shown anywhere on this dashboard are statistical exercises based on historical patterns — <strong>not</strong> official forecasts of the Government of India.</li>
+          <li>Descriptive statistics, test statistics and model outputs are computed from the downloaded tables only; no external dataset is used anywhere on this site.</li>
+          <li>Region mapping is an analyst-added classification (UN M49-inspired) used solely for aggregation; it is not part of the TradeStat output.</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span>FDSA project · Analysis and Prediction of India's Merchandise Trade</span>
+      <span>Data: TradeStat EIDB, Dept. of Commerce, Govt. of India · retrieved 2026-10-06 · unit: ₹ Crore</span>
+    </footer>
+  </main>
+</div>
+
+<script src="assets/echarts.min.js"></script>
+<script src="data/data.js"></script>
+<script src="js/pages-a.js"></script>
+<script src="js/pages-b.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

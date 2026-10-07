@@ -1,0 +1,181 @@
+{
+  "generated_at": "2026-10-06T14:46:56.960543+05:30",
+  "unit": "Rs Crore",
+  "source": "TradeStat EIDB",
+  "fy_coverage": [
+    "FY2017-18",
+    "FY2018-19",
+    "FY2019-20",
+    "FY2020-21",
+    "FY2021-22",
+    "FY2022-23",
+    "FY2023-24",
+    "FY2024-25",
+    "FY2025-26"
+  ],
+  "checks": {
+    "chapter_sum_vs_total": {
+      "export": {
+        "max_rel_diff": 1.0,
+        "n_years": 8
+      },
+      "import": {
+        "max_rel_diff": 0.0,
+        "n_years": 8
+      }
+    },
+    "country_sum_vs_total": {
+      "export": {
+        "max_rel_diff": 1.0,
+        "n_years": 8
+      },
+      "import": {
+        "max_rel_diff": 0.0,
+        "n_years": 8
+      }
+    },
+    "item_sum_to_total_ratio": {
+      "export:FY2018-19": 1.0,
+      "export:FY2019-20": 1.0,
+      "export:FY2020-21": 1.0,
+      "export:FY2021-22": 1.0,
+      "export:FY2022-23": 1.0,
+      "export:FY2023-24": 2.0,
+      "export:FY2024-25": 1.0,
+      "export:FY2025-26": 1.0,
+      "import:FY2018-19": 1.0,
+      "import:FY2019-20": 1.0,
+      "import:FY2020-21": 1.0,
+      "import:FY2021-22": 1.0,
+      "import:FY2022-23": 1.0,
+      "import:FY2023-24": 1.0,
+      "import:FY2024-25": 1.0,
+      "import:FY2025-26": 1.0
+    },
+    "item_sum_ratio_flags": {
+      "export:FY2023-24": 2.0
+    },
+    "commodity_report_vs_country_report_totals": [
+      {
+        "pair": "commodity_export vs country_export",
+        "max_rel_diff": 0.0
+      },
+      {
+        "pair": "commodity_import vs country_import",
+        "max_rel_diff": 0.0
+      }
+    ],
+    "cross_year_selection_consistency": {
+      "checked_pairs": 5305,
+      "mismatches_gt_0.5pct": 0
+    },
+    "duplicate_chapter_keys": 0,
+    "duplicate_country_keys": 0,
+    "invalid_hs2_codes": [],
+    "chapters_per_fy": {
+      "FY2018-19": 98,
+      "FY2019-20": 98,
+      "FY2020-21": 98,
+      "FY2021-22": 98,
+      "FY2022-23": 98,
+      "FY2023-24": 98,
+      "FY2024-25": 98,
+      "FY2025-26": 98
+    },
+    "countries_per_fy": {
+      "FY2018-19": 240,
+      "FY2019-20": 241,
+      "FY2020-21": 240,
+      "FY2021-22": 235,
+      "FY2022-23": 236,
+      "FY2023-24": 238,
+      "FY2024-25": 240,
+      "FY2025-26": 241
+    },
+    "zero_value_chapter_rows": 0,
+    "negative_value_chapter_rows": 0,
+    "missing_chapter_values": 0,
+    "unspecified_country_rows": {
+      "FY2018-19": 2,
+      "FY2019-20": 2,
+      "FY2020-21": 2,
+      "FY2021-22": 2,
+      "FY2022-23": 2,
+      "FY2023-24": 2,
+      "FY2024-25": 2,
+      "FY2025-26": 2
+    },
+    "unspecified_value_share_pct": {
+      "export_fy2024-25": 0.8186
+    },
+    "fy2025_26_completeness": {
+      "export_growth_vs_fy2024-25_pct": 5.34,
+      "import_growth_vs_fy2024-25_pct": 12.44,
+      "verdict": "full-year figure as published by TradeStat (fiscal year ended 31 Mar 2026); treated as provisional/subject to revision"
+    }
+  },
+  "anomalies": [
+    {
+      "type": "growth_outlier_gt80pct",
+      "direction": "export",
+      "country": "ALBANIA",
+      "fy2023-24": 19111.49,
+      "fy2024-25": 656.48,
+      "growth_pct": -96.6
+    },
+    {
+      "type": "growth_outlier_gt80pct",
+      "direction": "export",
+      "country": "GIBRALTAR",
+      "fy2023-24": 13769.28,
+      "fy2024-25": 229.94,
+      "growth_pct": -98.3
+    },
+    {
+      "type": "growth_outlier_gt80pct",
+      "direction": "import",
+      "country": "CHILE",
+      "fy2024-25": 21994.21,
+      "fy2025-26": 44804.27,
+      "growth_pct": 103.7
+    },
+    {
+      "type": "growth_outlier_gt80pct",
+      "direction": "import",
+      "country": "EGYPT A RP",
+      "fy2024-25": 11273.58,
+      "fy2025-26": 22962.51,
+      "growth_pct": 103.7
+    },
+    {
+      "type": "growth_outlier_gt80pct",
+      "direction": "import",
+      "country": "GHANA",
+      "fy2024-25": 15127.2,
+      "fy2025-26": 59262.84,
+      "growth_pct": 291.8
+    },
+    {
+      "type": "growth_outlier_gt80pct",
+      "direction": "import",
+      "country": "MOROCCO",
+      "fy2024-25": 13428.4,
+      "fy2025-26": 25528.48,
+      "growth_pct": 90.1
+    },
+    {
+      "type": "growth_outlier_gt80pct",
+      "direction": "import",
+      "country": "PERU",
+      "fy2024-25": 42088.34,
+      "fy2025-26": 79062.27,
+      "growth_pct": 87.8
+    }
+  ],
+  "notes": [
+    "SOURCE-SIDE DEFECT: for flagged fy/direction the sum of item values deviates from the official total row on TradeStat itself (e.g. FY2023-24 export: items sum to 2.000000x the official total, verified across two independent year-selections). Values are shown exactly as published; item-level views for flagged years carry an on-screen warning; national totals always use the official total row.",
+    "Values are as published on TradeStat EIDB on retrieval date; Albania FY2023-24 export figure (19,111.49 Cr) and similar site-side outliers are flagged but retained unmodified - official source values.",
+    "Region classification is an analyst-added mapping (UN M49-inspired) for aggregation; not part of the TradeStat output.",
+    "Cross-selection consistency: value for FYk taken as authoritative from year-selection k (second value column); first column of selection k+1 used as cross-check."
+  ]
+}
